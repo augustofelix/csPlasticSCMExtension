@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2037
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSRedmineExtension", "RedmineExtension\CSRedmineExtension.csproj", "{37959812-14B5-4946-B46E-BD6063CADF67}"
+	GlobalSection(PlasticSccProperties) = preSolution
+		ControlledByPlastic = True
+		SccProvider = Plastic SCM
+	EndGlobalSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedmineApi", "RedmineApi\RedmineApi.csproj", "{6E69F2EA-935F-40A9-8397-C21595623752}"
+	GlobalSection(PlasticSccProperties) = preSolution
+		ControlledByPlastic = True
+		SccProvider = Plastic SCM
+	EndGlobalSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{37959812-14B5-4946-B46E-BD6063CADF67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37959812-14B5-4946-B46E-BD6063CADF67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37959812-14B5-4946-B46E-BD6063CADF67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37959812-14B5-4946-B46E-BD6063CADF67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E69F2EA-935F-40A9-8397-C21595623752}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E69F2EA-935F-40A9-8397-C21595623752}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E69F2EA-935F-40A9-8397-C21595623752}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E69F2EA-935F-40A9-8397-C21595623752}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {14194770-05A1-49B6-AAFC-AC5B9C85C79F}
+	EndGlobalSection
+	GlobalSection(PlasticSccProperties) = preSolution
+		ControlledByPlastic = True
+		SccProvider = Plastic SCM
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = RedmineExtension\RedmineExtensionVS2008.csproj
+	EndGlobalSection
+EndGlobal
