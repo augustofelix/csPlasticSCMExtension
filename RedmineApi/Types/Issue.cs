@@ -287,6 +287,7 @@ namespace Redmine.Net.Api.Types
 
         public void WriteXml(XmlWriter writer)
         {
+            writer.WriteElementString("id",Id.ToString());
             writer.WriteElementString("subject", Subject);
             writer.WriteElementString("description", Description);
             writer.WriteIdIfNotNull(Project, "project_id");
