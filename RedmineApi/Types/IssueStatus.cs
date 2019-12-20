@@ -71,6 +71,10 @@ namespace Redmine.Net.Api.Types
 
         public override void WriteXml(XmlWriter writer)
         {
+            writer.WriteElementString("id", Id.ToString());
+            writer.WriteElementString("name", Name);
+            writer.WriteElementString("is_default", IsDefault.ToString());
+            writer.WriteElementString("is_closed", IsClosed.ToString());
         }
 
         public bool Equals(IssueStatus other)
