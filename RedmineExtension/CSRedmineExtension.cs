@@ -28,7 +28,7 @@ namespace Codice.Client.IssueTracker.RedmineExtension
 
         private static readonly ILog mLog = LogManager.GetLogger("extensions");
 
-        private string pageSize = "50";
+        private string pageSize = "100";
 
         public string PageSize { get => pageSize; set => pageSize = value; }
 
@@ -83,53 +83,70 @@ namespace Codice.Client.IssueTracker.RedmineExtension
                 RedmineManager redmineManager = CreateRedmineManager(CSRedmineExtension.HOST_KEY);
                 
                 parameters.Set("limit", PageSize);
-                issues = redmineManager.GetObjectList<Issue>(parameters, out int count);
-                List<PlasticTask> plasticTasks = new List<PlasticTask>(count);
+                issues = redmineManager.GetObjectList<Issue>(parameters, out int pageLimit);
+                //List<PlasticTask> plasticTasks = new List<PlasticTask>(count);
+                List<PlasticTask> plasticTasks = new List<PlasticTask>();
+                int offset = 0;
 
                 User user = redmineManager.GetCurrentUser();
 
                 if (assignee.ToLower() == user.Login.ToLower())
                 {
-                    for (int i = 0; i < issues.Count; i++)
+                    do
                     {
-                        if (issues[i].Status.Name.ToLower() == pendingState && issues[i].Author.Name.ToLower() == user.FirstName.ToLower())
+                        parameters.Set("offset", offset.ToString());
+                        issues = redmineManager.GetObjectList<Issue>(parameters);
+
+                        for (int i = 0; i < issues.Count; i++)
                         {
-                            PlasticTask plasticTask = new PlasticTask
+                            if (issues[i].Status.Name.ToLower() == pendingState && issues[i].Author.Name.ToLower() == user.FirstName.ToLower())
                             {
-                                Description = issues[i].Description,
-                                Owner = issues[i].Author.Name,
-                                Id = issues[i].Id.ToString(),
-                                Status = issues[i].Status.Name,
-                                Title = issues[i].Subject,
+                                PlasticTask plasticTask = new PlasticTask
+                                {
+                                    Description = issues[i].Description,
+                                    Owner = issues[i].Author.Name,
+                                    Id = issues[i].Id.ToString(),
+                                    Status = issues[i].Status.Name,
+                                    Title = issues[i].Subject,
 
-                                CanBeLinked = true //??
-                            };
+                                    CanBeLinked = true //??
+                                };
 
-                            plasticTasks.Add(plasticTask);
+                                plasticTasks.Add(plasticTask);
+                            }
                         }
-                    }
+                        offset += Convert.ToInt32(PageSize);
+                    } while (offset < pageLimit);
+
                     return plasticTasks;
                 }
                 else if (string.IsNullOrEmpty(assignee))
                 {
-                    for (int i = 0; i < issues.Count; i++)
+                    do
                     {
-                        if (issues[i].Status.Name.ToLower() == pendingState)
-                        {
-                            PlasticTask plasticTask = new PlasticTask
-                            {
-                                Description = issues[i].Description,
-                                Owner = issues[i].Author.Name,
-                                Id = issues[i].Id.ToString(),
-                                Status = issues[i].Status.Name,
-                                Title = issues[i].Subject,
-                                //plasticTask.RepName = ??
-                                CanBeLinked = true //??
-                            };
+                        parameters.Set("offset", offset.ToString());
+                        issues = redmineManager.GetObjectList<Issue>(parameters);
 
-                            plasticTasks.Add(plasticTask);
+                        for (int i = 0; i < issues.Count; i++)
+                        {
+                            if (issues[i].Status.Name.ToLower() == pendingState)
+                            {
+                                PlasticTask plasticTask = new PlasticTask
+                                {
+                                    Description = issues[i].Description,
+                                    Owner = issues[i].Author.Name,
+                                    Id = issues[i].Id.ToString(),
+                                    Status = issues[i].Status.Name,
+                                    Title = issues[i].Subject,
+                                    //plasticTask.RepName = ??
+                                    CanBeLinked = true //??
+                                };
+
+                                plasticTasks.Add(plasticTask);
+                            }
                         }
-                    }
+                        offset += Convert.ToInt32(PageSize);
+                    } while (offset <= pageLimit);
                 }
 
                 return plasticTasks;

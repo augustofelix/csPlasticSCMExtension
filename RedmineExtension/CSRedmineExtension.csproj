@@ -59,13 +59,17 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Codice.I3, Version=7.0.16.1930, Culture=neutral, PublicKeyToken=a107c9c6e34c8876, processorArchitecture=MSIL">
+    <Reference Include="Codice.I3, Version=8.0.16.3859, Culture=neutral, PublicKeyToken=a107c9c6e34c8876, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\vendor\windows\plasticscm4\client\Codice.I3.dll</HintPath>
+      <HintPath>..\..\..\..\..\Program Files\PlasticSCM5\client\Codice.I3.dll</HintPath>
     </Reference>
     <Reference Include="issuetrackerinterface, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Release\issuetrackerinterface.dll</HintPath>
+      <HintPath>..\..\..\..\..\Program Files\PlasticSCM5\client\issuetrackerinterface.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.9.0, Culture=neutral, PublicKeyToken=b32731d11ce58905">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files\PlasticSCM5\client\log4net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -84,10 +88,7 @@
     <Reference Include="extensioncommon">
       <HintPath>..\vendor\windows\plasticscm4\client\extensioncommon.dll</HintPath>
     </Reference>
-    <Reference Include="log4net">
-      <HintPath>..\vendor\windows\plasticscm4\client\log4net.dll</HintPath>
-    </Reference>
-    <Reference Include="utils, Version=6.0.16.1765, Culture=neutral, PublicKeyToken=a107c9c6e34c8876, processorArchitecture=MSIL">
+    <Reference Include="utils, Version=8.0.16.3859, Culture=neutral, PublicKeyToken=a107c9c6e34c8876, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\Program Files\PlasticSCM5\client\utils.dll</HintPath>
     </Reference>
