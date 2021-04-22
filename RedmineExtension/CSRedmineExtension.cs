@@ -78,6 +78,7 @@ namespace Codice.Client.IssueTracker.RedmineExtension
             try
             {
                 string pendingState = mConfig.GetValue(CSRedmineExtension.PENDING_TASK_KEY).ToLower();
+                string assignedTo = "";
                 IList<Issue> issues = null;
                 NameValueCollection parameters = new NameValueCollection();
                 RedmineManager redmineManager = CreateRedmineManager(CSRedmineExtension.HOST_KEY);
@@ -99,7 +100,16 @@ namespace Codice.Client.IssueTracker.RedmineExtension
 
                         for (int i = 0; i < issues.Count; i++)
                         {
-                            if (issues[i].Status.Name.ToLower() == pendingState && issues[i].Author.Name.ToLower() == user.FirstName.ToLower())
+                            if (issues[i].AssignedTo == null)
+                            {
+                                assignedTo = "";
+                            }
+                            else
+                            {
+                                assignedTo = issues[i].AssignedTo.Name.ToLower();
+                            }
+
+                            if (issues[i].Status.Name.ToLower() == pendingState && (issues[i].Author.Name.ToLower() == user.FirstName.ToLower() || assignedTo == user.FirstName.ToLower()))
                             {
                                 PlasticTask plasticTask = new PlasticTask
                                 {
